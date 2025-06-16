@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pedido de Frutas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f3f3f3;
+    }
+
+    h1 {
+      color: #2e7d32;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    select, input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px;
+    }
+
+    button {
+      background-color: #2e7d32;
+      color: white;
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .produto {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Pedido de Frutas</h1>
+
+  <label for="loja">Selecione a Loja:</label>
+  <select id="loja">
+    <option value="Loja 01">Loja 01</option>
+    <option value="Loja 02">Loja 02</option>
+    <option value="Loja 03">Loja 03</option>
+  </select>
+
+  <div class="produto">
+    <label>Caturra (kg):</label>
+    <input type="number" id="caturra" min="0" placeholder="Ex: 10" />
+  </div>
+
+  <div class="produto">
+    <label>Prata (kg):</label>
+    <input type="number" id="prata" min="0" placeholder="Ex: 20" />
+  </div>
+
+  <div class="produto">
+    <label>Maçã (kg):</label>
+    <input type="number" id="maca" min="0" placeholder="Ex: 5" />
+  </div>
+
+  <button onclick="enviarPedido()">Enviar Pedido</button>
+
+  <script>
+    function enviarPedido() {
+      const loja = document.getElementById("loja").value;
+      const caturra = document.getElementById("caturra").value || 0;
+      const prata = document.getElementById("prata").value || 0;
+      const maca = document.getElementById("maca").value || 0;
+
+      const mensagem = `Pedido\n${loja}\n${caturra} Caturra\n${prata} Prata\n${maca} Maçã`;
+
+      const numero = "5547999999999"; // Número do WhatsApp (com DDI)
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
